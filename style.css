@@ -245,3 +245,91 @@ footer {
     padding: 50px 20px;
   }
 }
+/* Teams Section */
+
+.teams {
+  padding: 70px 8%;
+  text-align: center;
+  background: #ffffff;
+}
+
+.teams > h2,
+.teams-dashboard h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #20243a;
+}
+
+.teams > p:not(.tagline) {
+  color: #6b7088;
+  margin-bottom: 25px;
+}
+
+#teamForm {
+  max-width: 500px;
+  margin: 25px auto 50px;
+  padding: 25px;
+  background: #f5f3ff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px #5546e814;
+}
+
+#teamForm h3 {
+  margin: 10px 0;
+  text-align: left;
+}
+
+#memberChoices {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+#memberChoices label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#memberChoices input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.teams-dashboard {
+  margin-top: 40px;
+}
+
+.team-card {
+  background: #f5f3ff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  border: 1px solid #e5e0ff;
+  box-shadow: 0 5px 18px #5546e810;
+}
+
+.team-card h3 {
+  color: #5546e8;
+  margin-bottom: 10px;
+}
+
+.team-card p {
+  margin: 6px 0;
+  color: #555b75;
+}
+
+@media (max-width: 600px) {
+  .teams {
+    padding: 50px 20px;
+  }
+
+  #teamForm {
+    padding: 18px;
+  }
+}
