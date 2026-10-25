@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillMatch - Student Team Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h2>SkillMatch<span>.</span></h2>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#students">Students</a>
+      <a href="#profile">My Profile</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <p class="tagline">YOUR NEXT GREAT TEAM STARTS HERE</p>
+    <h1>Find Your People.<br><span>Build Something Great.</span></h1>
+    <p>Discover talented students and find the right teammates
+       for your next college project or hackathon.</p>
+    <a class="button" href="#students">Explore Students →</a>
+  </section>
+
+  <section class="stats">
+    <div><h2 id="studentCount">12</h2><p>Students</p></div>
+    <div><h2>18+</h2><p>Skills</p></div>
+    <div><h2>∞</h2><p>Ideas to Build</p></div>
+  </section>
+
+  <section id="students" class="students">
+    <p class="tagline">THE COMMUNITY</p>
+    <h2>Discover Students</h2>
+    <input id="search" type="text"
+      placeholder="Search by name or skill...">
+    <div id="studentList" class="student-grid"></div>
+  </section>
+
+  <section id="profile" class="profile">
+    <p class="tagline">JOIN THE COMMUNITY</p>
+    <h2>Create Your Profile</h2>
+    <form id="profileForm">
+      <input id="name" placeholder="Your name" required>
+      <select id="branch" required>
+        <option value="">Select Branch</option>
+        <option>CSE</option>
+        <option>AIML</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>IT</option>
+      </select>
+      <input id="skills" placeholder="Skills (Java, HTML, Python)" required>
+      <button class="button" type="submit">Add Profile</button>
+    </form>
+  </section>
+
+  <footer>SkillMatch © 2026 | Built for student collaboration</footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
