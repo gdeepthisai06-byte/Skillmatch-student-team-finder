@@ -1,4 +1,4 @@
-const students = [
+const defaultStudents = [
   {
     name: "Sai",
     branch: "CSE",
@@ -37,6 +37,16 @@ const students = [
   }
 ];
 
+let students;
+
+try {
+  const saved = localStorage.getItem("skillMatchStudents");
+  students = saved ? JSON.parse(saved) : defaultStudents;
+  if (!Array.isArray(students)) students = defaultStudents;
+} catch {
+  students = defaultStudents;
+}
+
 const studentList = document.getElementById("studentList");
 const search = document.getElementById("search");
 const studentCount = document.getElementById("studentCount");
@@ -45,14 +55,15 @@ function displayStudents(list) {
   studentList.innerHTML = "";
 
   if (list.length === 0) {
-    studentList.innerHTML =
-      "<p>No students found. Try another search.</p>";
+    studentList.innerHTML = "<p>No students found.</p>";
     return;
   }
 
   list.forEach(student => {
     const card = document.createElement("div");
     card.className = "student-card";
+    card.style.cursor = "pointer";
+    card.title = "Click to view profile";
 
     card.innerHTML = `
       <h3>${student.name}</h3>
@@ -63,16 +74,31 @@ function displayStudents(list) {
           `<span class="skill">${skill}</span>`
         ).join("")}
       </div>
+      <p style="color:#6555e8;margin-top:12px">
+        View Profile →
+      </p>
     `;
+
+    card.addEventListener("click", () => {
+      alert(
+        "Student Profile\n\n" +
+        "Name: " + student.name + "\n" +
+        "Branch: " + student.branch + "\n" +
+        "Skills: " + student.skills.join(", ") + "\n" +
+        "Interest: " + student.interest
+      );
+    });
 
     studentList.appendChild(card);
   });
+
+  studentCount.textContent = students.length;
 }
 
 search.addEventListener("input", () => {
   const keyword = search.value.toLowerCase();
 
-  const filteredStudents = students.filter(student =>
+  const filtered = students.filter(student =>
     student.name.toLowerCase().includes(keyword) ||
     student.branch.toLowerCase().includes(keyword) ||
     student.skills.some(skill =>
@@ -81,7 +107,7 @@ search.addEventListener("input", () => {
     student.interest.toLowerCase().includes(keyword)
   );
 
-  displayStudents(filteredStudents);
+  displayStudents(filtered);
 });
 
 document.getElementById("profileForm").addEventListener("submit", event => {
@@ -95,28 +121,34 @@ document.getElementById("profileForm").addEventListener("submit", event => {
     .filter(Boolean);
 
   if (!name || !branch || skills.length === 0) {
-    alert("Please fill in all the details.");
+    alert("Please fill in all details.");
     return;
   }
 
   students.unshift({
-    name: name,
-    branch: branch,
-    skills: skills,
+    name,
+    branch,
+    skills,
     interest: "Student Projects"
   });
 
-  studentCount.textContent = students.length;
-  displayStudents(students);
+  try {
+    localStorage.setItem(
+      "skillMatchStudents",
+      JSON.stringify(students)
+    );
+  } catch {
+    alert("Could not save the profile in this browser.");
+  }
 
+  displayStudents(students);
   document.getElementById("profileForm").reset();
 
-  alert("Your profile has been added successfully!");
+  alert("Profile added successfully!");
 
   document.getElementById("students").scrollIntoView({
     behavior: "smooth"
   });
 });
 
-studentCount.textContent = students.length;
 displayStudents(students);
